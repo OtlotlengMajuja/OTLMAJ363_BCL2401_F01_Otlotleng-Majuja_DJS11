@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Header } from ".../components/Header";
 import { ShowList } from "./ShowList";
 
-export default function App() {
+export default function Podcast() {
   const [shows, setShows] = useState([]);
 
   const fetchShows = async () => {

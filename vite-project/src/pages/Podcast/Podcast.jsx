@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import { Header } from ".../components/Header";
 import { ShowList } from "./ShowList";
 
@@ -7,8 +8,8 @@ export default function App() {
 
   const fetchShows = async () => {
     try {
-      const response = await fetch("https://podcast-api.netlify.app");
-      const data = await response.json();
+      const res = await fetch("https://podcast-api.netlify.app");
+      const data = await res.json();
       return data.sort((a, b) => a.title.localeCompare(b.title));
     } catch (error) {
       console.error("Error fetching shows:", error);
@@ -17,7 +18,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    fetchShows().then((data) => setShows(data));
+    fetchShows().then((sortedShows) => setShows(sortedShows));
   }, []);
 
   return (

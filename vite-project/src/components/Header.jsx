@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import imageUrl from "/src/assets/images/avatar-icon.png";
 
 export default function Header() {
   const activeStyles = {
@@ -9,16 +8,16 @@ export default function Header() {
     color: "#161616",
   };
 
-  function fakeLogOut() {
-    localStorage.removeItem("loggedin");
-  }
-
   return (
     <header>
-      <Link className="site-logo" to="/">
-        Sound Silo
-      </Link>
+      <h1>Sound Silo</h1>
       <nav>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? activeStyles : null)}
+        >
+          Home
+        </NavLink>
         <NavLink
           to="/favourites"
           className={({ isActive }) => (isActive ? activeStyles : null)}
@@ -31,10 +30,6 @@ export default function Header() {
         >
           Search
         </NavLink>
-        <Link to="login" className="login-link">
-          <img src={imageUrl} className="login-icon" />
-        </Link>
-        <button onClick={fakeLogOut}>X</button>
       </nav>
     </header>
   );

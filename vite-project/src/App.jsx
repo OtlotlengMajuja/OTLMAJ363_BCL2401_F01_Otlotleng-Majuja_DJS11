@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route /*Link*/ } from "react-router-dom";
-import { PodcastDetails } from "./pages/Podcast/PodcastDetail";
+import { Layout } from "./components/Layout";
+import { Home } from "./pages/Home";
 
 export default function App() {
   return (
@@ -8,8 +9,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="favourites" element={<Favourites />} />
-          <Route path="search" element={<Search />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,15 +1,16 @@
 import React from "react";
 import { BrowserRouter, Routes, Route /*Link*/ } from "react-router-dom";
-import { Layout } from "./components/Layout";
-import { Home } from "./pages/Home";
+import Header from "./components/Header";
+import Showlist from "./pages/Podcast/ShowList";
+import Favourites from "./components/Favourites";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-        </Route>
+        <Route path="/" element={<Showlist shows={shows} />} />
+        <Route path="/favourites" element={<Favourites shows={shows} />} />
       </Routes>
     </BrowserRouter>
   );

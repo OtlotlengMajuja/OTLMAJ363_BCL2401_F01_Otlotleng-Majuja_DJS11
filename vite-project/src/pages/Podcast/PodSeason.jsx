@@ -1,3 +1,6 @@
+import React from "react";
+import Episode from "./PodEpisode";
+
 const Season = ({ season }) => (
   <div>
     <h3>Season {season.seasonNumber}</h3>

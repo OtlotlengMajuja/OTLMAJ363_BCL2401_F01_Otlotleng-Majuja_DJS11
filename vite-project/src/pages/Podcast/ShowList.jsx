@@ -11,6 +11,7 @@ const Showlist = ({ shows }) => {
           <Link to={`/show/${show.id}`}>
             <img src={show.image} alt={`${show.title} poster`} width="100" />
             <div>{show.title}</div>
+            <div>Genres: {show.genres.join(", ")}</div>
             <div>Seasons: {show.seasons.length}</div>
             <div>
               Last Updated: {formatDistanceToNow(new Date(show.lastUpdated))}{" "}

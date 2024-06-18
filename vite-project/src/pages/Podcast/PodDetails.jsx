@@ -14,24 +14,29 @@ export default function PodDetails() {
   const [seasonLoading, setSeasonLoading] = useState(false);
 
   useEffect(() => {
-    //
+    // Fetch show details when component mounts or showId changes
     fetchShowDetails(showId);
   }, [showId]);
 
   const fetchShowDetails = (id) => {
+    // Set loading state to true
     setLoading(true);
+    // Fetch show details
     fetch(`https://podcast-api.netlify.app/shows/${id}`)
       .then((res) => res.json())
       .then((data) => {
+        // Set show data and loading state to false
         setShow(data);
         setLoading(false);
       })
       .catch((error) => {
+        // Log error and set loading state to false
         console.error("Error fetching show details:", error);
         setLoading(false);
       });
   };
 
+  // Modal and season selection functions
   const openModal = (seasonNumber) => {
     setSelectedSeason(seasonNumber);
     setModalIsOpen(true);
@@ -47,6 +52,7 @@ export default function PodDetails() {
     setSeasonLoading(false);
   };
 
+  // Render component
   if (loading) return <LoadState />;
 
   return (

@@ -8,7 +8,7 @@ export default function Podcast() {
 
   const fetchShows = async () => {
     try {
-      const res = await fetch("https://podcast-api.netlify.app");
+      const res = await fetch("https://podcast-api.netlify.app/shows");
       const data = await res.json();
       return data.sort((a, b) => a.title.localeCompare(b.title));
     } catch (error) {

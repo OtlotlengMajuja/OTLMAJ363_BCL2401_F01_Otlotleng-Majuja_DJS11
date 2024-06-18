@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Modal from "react-modal";
+import PodSeason from "./PodSeason";
 
 export default function PodDetails() {
   const { showId } = useParams();
   const [show, setShow] = useState(null);
+  const [selectedSeason, setSelectedSeason] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
-    fetch(`/https://podcast-api.netlify.app/shows/${showId}`)
+    fetch(`https://podcast-api.netlify.app/shows/${showId}`)
       .then((res) => res.json())
       .then((data) => setShow(data))
       .catch((error) => console.error("Error fetching show details:", error));
@@ -14,35 +19,40 @@ export default function PodDetails() {
 
   if (!show) return <div>Loading...</div>;
 
+  const openModal = (seasonNumber) => {
+    setSelectedSeason(seasonNumber);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
     <div>
       <h2>{show.title}</h2>
-      {show.seasons.map((season) => (
-        <Season key={season.seasonNumber} season={season} />
-      ))}
+      <button onClick={() => openModal(show.seasons[0].seasonNumber)}>
+        View Seasons
+      </button>
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>
+        <h2>Select Season</h2>
+        {show.seasons.map((season) => (
+          <button
+            key={season.seasonNumber}
+            onClick={() => setSelectedSeason(season.seasonNumber)}
+          >
+            Season {season.seasonNumber}
+          </button>
+        ))}
+        <button onClick={closeModal}>Close</button>
+      </Modal>
+      {selectedSeason && (
+        <Season
+          season={show.seasons.find(
+            (season) => season.seasonNumber === selectedSeason
+          )}
+        />
+      )}
     </div>
   );
 }
-
-const Season = ({ season }) => (
-  <div>
-    <h3>Season {season.seasonNumber}</h3>
-    {season.episodes.map((episode) => (
-      <Episode key={episode.episodeNumber} episode={episode} />
-    ))}
-  </div>
-);
-
-const Episode = ({ episode }) => (
-  <div>
-    <h4>{episode.title}</h4>
-    <AudioPlayer src={episode.audioUrl} />
-  </div>
-);
-
-const AudioPlayer = ({ src }) => (
-  <audio controls>
-    <source src={src} type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-);

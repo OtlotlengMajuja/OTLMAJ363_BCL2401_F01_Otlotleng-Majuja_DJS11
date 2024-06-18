@@ -1,9 +1,9 @@
 import React from "react";
 
-const Loader = () => (
+const LoadState = () => (
   <div className="loader">
     <p>Loading...</p>
   </div>
 );
 
-export default Loader;
+export default LoadState;

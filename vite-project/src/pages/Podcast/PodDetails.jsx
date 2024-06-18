@@ -3,21 +3,34 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Modal from "react-modal";
 import PodSeason from "./PodSeason";
+import LoadState from "./LoadState";
 
 export default function PodDetails() {
   const { showId } = useParams();
   const [show, setShow] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [seasonLoading, setSeasonLoading] = useState(false);
 
   useEffect(() => {
-    fetch(`https://podcast-api.netlify.app/shows/${showId}`)
-      .then((res) => res.json())
-      .then((data) => setShow(data))
-      .catch((error) => console.error("Error fetching show details:", error));
+    //
+    fetchShowDetails(showId);
   }, [showId]);
 
-  if (!show) return <div>Loading...</div>;
+  const fetchShowDetails = (id) => {
+    setLoading(true);
+    fetch(`https://podcast-api.netlify.app/shows/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setShow(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching show details:", error);
+        setLoading(false);
+      });
+  };
 
   const openModal = (seasonNumber) => {
     setSelectedSeason(seasonNumber);
@@ -27,6 +40,14 @@ export default function PodDetails() {
   const closeModal = () => {
     setModalIsOpen(false);
   };
+
+  const selectSeason = (seasonNumber) => {
+    setSeasonLoading(true);
+    setSelectedSeason(seasonNumber);
+    setSeasonLoading(false);
+  };
+
+  if (loading) return <LoadState />;
 
   return (
     <div>
@@ -46,8 +67,9 @@ export default function PodDetails() {
         ))}
         <button onClick={closeModal}>Close</button>
       </Modal>
-      {selectedSeason && (
-        <Season
+      {seasonLoading && <LoadState />}
+      {!seasonLoading && selectedSeason && (
+        <PodSeason
           season={show.seasons.find(
             (season) => season.seasonNumber === selectedSeason
           )}
@@ -65,7 +87,7 @@ export default function PodDetails() {
                   width="100"
                 />
                 <div>
-                  Season {season.seasonNumber} - {season.episodes.length}{" "}
+                  Season {season.seasonNumber} - {season.episodes.length}
                   Episodes
                 </div>
               </Link>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Modal from "react-modal";
 import PodSeason from "./PodSeason";
 
@@ -51,7 +51,27 @@ export default function PodDetails() {
           season={show.seasons.find(
             (season) => season.seasonNumber === selectedSeason
           )}
+          showId={show.id}
         />
+      )}
+      {selectedSeason === null && (
+        <div>
+          {show.seasons.map((season) => (
+            <div key={season.seasonNumber}>
+              <Link to={`/show/${show.id}/season/${season.seasonNumber}`}>
+                <img
+                  src={season.previewImage}
+                  alt={`Season ${season.seasonNumber} poster`}
+                  width="100"
+                />
+                <div>
+                  Season {season.seasonNumber} - {season.episodes.length}{" "}
+                  Episodes
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

@@ -14,7 +14,7 @@ const Showlist = ({ shows }) => {
             <div>Genres: {show.genres.join(", ")}</div>
             <div>Seasons: {show.seasons.length}</div>
             <div>
-              Last Updated: {formatDistanceToNow(new Date(show.lastUpdated))}{" "}
+              Last Updated: {formatDistanceToNow(new Date(show.lastUpdated))}
               ago
             </div>
           </Link>

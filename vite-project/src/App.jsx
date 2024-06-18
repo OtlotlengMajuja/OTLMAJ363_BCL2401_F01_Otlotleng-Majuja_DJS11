@@ -5,13 +5,14 @@ import Header from "./components/Header";
 import ShowList from "./pages/Podcast/ShowList";
 import Favorites from "./components/Favorites";
 import PodDetails from "./pages/Podcast/PodDetails";
+import PodSeason from "./pages/Podcast/PodSeason";
 
 export default function App() {
   const [shows, setShows] = useState([]);
 
   useEffect(() => {
     fetch("https://podcast-api.netlify.app/shows")
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
         const sortedShows = data.sort((a, b) => a.title.localeCompare(b.title));
         setShows(sortedShows);
@@ -25,6 +26,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<ShowList shows={shows} />} />
         <Route path="/show/:showId" element={<PodDetails />} />
+        <Route
+          path="/show/:showId/season/:seasonNumber"
+          element={<PodSeason />}
+        />
         <Route path="/favorites" element={<Favorites shows={shows} />} />
       </Routes>
     </BrowserRouter>

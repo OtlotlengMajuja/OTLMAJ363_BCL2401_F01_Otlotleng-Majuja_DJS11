@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import ShowList from "./pages/Podcast/ShowList";
 import PodDetails from "./pages/Podcast/PodDetails";
 import PodSeason from "./pages/Podcast/PodSeason";
-import Favorites from "./components/Faves";
+import GroupedFaves from "./components/GroupedFaves";
 import { FavoritesProvider } from "./context/FavesContext";
 
 export default function App() {
@@ -31,7 +31,7 @@ export default function App() {
             path="/show/:showId/season/:seasonNumber"
             element={<PodSeason />}
           />
-          <Route path="/favorites" element={<Favorites shows={shows} />} />
+          <Route path="/favorites" element={<GroupedFaves />} />
         </Routes>
       </BrowserRouter>
     </FavoritesProvider>

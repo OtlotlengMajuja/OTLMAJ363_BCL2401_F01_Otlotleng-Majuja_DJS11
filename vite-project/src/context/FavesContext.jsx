@@ -11,10 +11,13 @@ export const FavoritesProvider = ({ children }) => {
   const [faves, setFaves] = useState([]);
 
   const addFavorite = (episode, showTitle, seasonNumber) => {
-    setFaves((prevFaves) => [
-      ...prevFaves,
-      { ...episode, showTitle, seasonNumber },
-    ]);
+    const newFavorite = {
+      ...episode,
+      showTitle,
+      seasonNumber,
+      addedAt: new Date().toISOString(), // Add timestamp
+    };
+    setFaves((prevFaves) => [...prevFaves, newFavorite]);
   };
 
   const removeFavorite = (episodeId) => {

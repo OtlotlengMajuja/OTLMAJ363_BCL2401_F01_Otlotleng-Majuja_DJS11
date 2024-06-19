@@ -10,14 +10,15 @@ export const useFavorites = () => useContext(FavesContext);
 export const FavoritesProvider = ({ children }) => {
   const [faves, setFaves] = useState([]);
 
-  const addFavorite = (episode) => {
-    setFaves((prevFavorites) => [...prevFavorites, episode]);
+  const addFavorite = (episode, showTitle, seasonNumber) => {
+    setFaves((prevFaves) => [
+      ...prevFaves,
+      { ...episode, showTitle, seasonNumber },
+    ]);
   };
 
   const removeFavorite = (episodeId) => {
-    setFaves((prevFavorites) =>
-      prevFavorites.filter((ep) => ep.id !== episodeId)
-    );
+    setFaves((prevFaves) => prevFaves.filter((ep) => ep.id !== episodeId));
   };
 
   return (

@@ -1,5 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
+import React from "react";
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import ShowList from "./pages/Podcast/ShowList";
 import PodDetails from "./pages/Podcast/PodDetails";
@@ -14,8 +16,7 @@ export default function App() {
     fetch("https://podcast-api.netlify.app/shows")
       .then((res) => res.json())
       .then((data) => {
-        const sortedShows = data.sort((a, b) => a.title.localeCompare(b.title));
-        setShows(sortedShows);
+        setShows(data);
       })
       .catch((error) => console.error("Error fetching shows:", error));
   }, []);

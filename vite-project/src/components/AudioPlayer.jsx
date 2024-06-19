@@ -6,6 +6,15 @@ export default function AudioPlayer(episode) {
   const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef(null);
 
+  useEffect(() => {
+    const audio = audioRef.current;
+    const updateTime = () => setCurrentTime(audio.currentTime);
+    if (audio) {
+      audio.addEventListener("timeupdate", updateTime);
+      return () => audio.removeEventListener("timeupdate", updateTime);
+    }
+  }, [audioRef]);
+
   if (!episode) return null;
 
   return (

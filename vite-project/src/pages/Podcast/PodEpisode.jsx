@@ -1,16 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import { FavoritesProvider } from "../../context/FavesContext";
+import { useFavorites } from "../../context/FavesContext";
 
-export default function PodEpisode(episode) {
-  const { faves, addFavorite, removeFavorite } = FavoritesProvider();
+export default function PodEpisode(episode, showTitle, seasonNumber) {
+  const { faves, addFavorite, removeFavorite } = useFavorites();
   const isFavorite = faves.some((fav) => fav.id === episode.id);
 
   const toggleFavorite = () => {
     if (isFavorite) {
       removeFavorite(episode.id);
     } else {
-      addFavorite(episode);
+      addFavorite(episode, showTitle, seasonNumber);
     }
   };
 

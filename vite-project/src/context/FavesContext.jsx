@@ -1,22 +1,28 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { createContext, useContext } from "react";
 import { useState } from "react";
 
-export function useFaves(children) {
-  const FavesContext = createContext();
+const FavesContext = createContext();
+
+export const useFavorites = () => useContext(FavesContext);
+
+export const FavoritesProvider = ({ children }) => {
   const [faves, setFaves] = useState([]);
 
   const addFavorite = (episode) => {
-    setFaves((prevFaves) => [...prevFaves, episode]);
+    setFaves((prevFavorites) => [...prevFavorites, episode]);
   };
 
   const removeFavorite = (episodeId) => {
-    setFaves((prevFaves) => prevFaves.filter((ep) => ep.id !== episodeId));
-
-    return (
-      <FavesContext.Provider value={{ faves, addFavorite, removeFavorite }}>
-        {children}
-      </FavesContext.Provider>
+    setFaves((prevFavorites) =>
+      prevFavorites.filter((ep) => ep.id !== episodeId)
     );
   };
-}
+
+  return (
+    <FavesContext.Provider value={{ faves, addFavorite, removeFavorite }}>
+      {children}
+    </FavesContext.Provider>
+  );
+};

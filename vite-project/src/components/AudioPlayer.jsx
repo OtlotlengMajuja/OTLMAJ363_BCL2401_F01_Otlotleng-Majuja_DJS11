@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function AudioPlayer(episode) {
   const [currentTime, setCurrentTime] = useState(0);
+  const audioRef = useRef(null);
 
   if (!episode) return null;
 

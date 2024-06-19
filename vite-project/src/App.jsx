@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import ShowList from "./pages/Podcast/ShowList";
-import Favorites from "./components/Favorites";
+import Favorites from "./components/Faves";
 import PodDetails from "./pages/Podcast/PodDetails";
 import PodSeason from "./pages/Podcast/PodSeason";
 

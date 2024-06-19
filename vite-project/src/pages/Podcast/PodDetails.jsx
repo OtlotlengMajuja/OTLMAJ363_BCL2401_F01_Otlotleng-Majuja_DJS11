@@ -48,7 +48,7 @@ export default function PodDetails() {
   const selectSeason = (seasonNumber) => {
     setSeasonLoading(true);
     setSelectedSeason(seasonNumber);
-    setSeasonLoading(false);
+    //setSeasonLoading(false);
   };
 
   // Render component
@@ -65,7 +65,7 @@ export default function PodDetails() {
         {show.seasons.map((season) => (
           <button
             key={season.seasonNumber}
-            onClick={() => setSelectedSeason(season.seasonNumber)}
+            onClick={() => selectSeason(season.seasonNumber)}
           >
             Season {season.seasonNumber}
           </button>

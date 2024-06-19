@@ -1,7 +1,7 @@
 import React from "react";
 import { useFaves } from "../../context/FavesContext";
 
-export default function Episode(episode) {
+export default function PodEpisode(episode) {
   const { faves, addFavorite, removeFavorite } = useFaves();
   const isFavorite = faves.some((fav) => fav.id === episode.id);
 

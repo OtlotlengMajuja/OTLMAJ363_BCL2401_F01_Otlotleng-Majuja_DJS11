@@ -1,5 +1,6 @@
 import React from "react";
 import { useFavorites } from "../context/FavesContext";
+import { useState } from "react";
 
 export default function GroupedFaves() {
   const { faves, removeFavorite } = useFavorites();

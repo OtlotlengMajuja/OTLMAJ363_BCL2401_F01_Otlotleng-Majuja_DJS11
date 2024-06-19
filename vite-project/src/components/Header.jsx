@@ -18,10 +18,10 @@ const Header = () => {
         Home
       </NavLink>
       <NavLink
-        to="/favourites"
+        to="/favorites"
         className={({ isActive }) => (isActive ? activeStyles : null)}
       >
-        Favourites
+        Favorites
       </NavLink>
       <NavLink
         to="/search"

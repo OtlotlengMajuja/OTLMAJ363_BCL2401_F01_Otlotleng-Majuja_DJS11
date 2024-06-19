@@ -1,7 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function AudioPlayer(episode) {
+  const [currentTime, setCurrentTime] = useState(0);
+
   if (!episode) return null;
 
   return (

@@ -7,7 +7,7 @@ const FavesContext = createContext();
 
 export const useFavorites = () => useContext(FavesContext);
 
-export const FavoritesProvider = (children) => {
+export default function FavoritesProvider(children) {
   const [faves, setFaves] = useState([]);
 
   const addFavorite = (episode, showTitle, seasonNumber) => {
@@ -29,4 +29,4 @@ export const FavoritesProvider = (children) => {
       {children}
     </FavesContext.Provider>
   );
-};
+}

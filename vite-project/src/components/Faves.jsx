@@ -1,10 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import { FavoritesProvider } from "../context/FavesContext";
+import { useFavorites } from "../context/FavesContext";
 import PodEpisode from "../pages/Podcast/PodEpisode";
 
 export default function Faves() {
-  const { faves } = FavoritesProvider();
+  const { faves } = useFavorites();
 
   return (
     <div>

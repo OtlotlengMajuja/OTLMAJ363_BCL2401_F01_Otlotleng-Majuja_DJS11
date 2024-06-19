@@ -2,7 +2,7 @@ import React from "react";
 import { createContext, useContext } from "react";
 import { useState } from "react";
 
-export default function useFaves(children) {
+export function useFaves(children) {
   const FavesContext = createContext();
   const [faves, setFaves] = useState([]);
 

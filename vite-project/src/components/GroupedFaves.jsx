@@ -1,6 +1,5 @@
-import React from "react";
-import { useFavorites } from "../context/FavesContext";
 import { useState } from "react";
+import { useFavorites } from "../context/FavesContext";
 
 export default function GroupedFaves() {
   const { faves, removeFavorite } = useFavorites();
@@ -13,17 +12,18 @@ export default function GroupedFaves() {
     return acc;
   }, {});
 
-  const sortedFavorites = Object.keys(groupedFavorites).map((key) => {
-    const episodes = groupedFavorites[key];
+  const sortFavorites = (episodes) => {
     if (sortOption === "title_az") {
-      episodes.sort((a, b) => a.title.localeCompare(b.title));
+      return episodes.sort((a, b) => a.title.localeCompare(b.title));
     } else if (sortOption === "title_za") {
-      episodes.sort((a, b) => b.title.localeCompare(a.title));
+      return episodes.sort((a, b) => b.title.localeCompare(a.title));
     } else if (sortOption === "most_recent") {
-      episodes.sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt));
+      return episodes.sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt));
+    } else if (sortOption === "furthest back") {
+      return episodes.sort((a, b) => new Date(a.addedAt) - new Date(b.addedAt));
     }
-    return { key, episodes };
-  });
+    return episodes;
+  };
 
   return (
     <div>
@@ -35,31 +35,35 @@ export default function GroupedFaves() {
           onChange={(e) => setSortOption(e.target.value)}
         >
           <option value="most_recent">Most Recent</option>
+          <option value="furthest_back">Furthest Back</option>
           <option value="title_az">Title A-Z</option>
           <option value="title_za">Title Z-A</option>
         </select>
       </div>
-      {sortedFavorites.length === 0 ? (
+      {Object.keys(groupedFavorites).length === 0 ? (
         <p>No favorite episodes yet.</p>
       ) : (
-        sortedFavorites.map(({ key, episodes }) => (
-          <div key={key}>
-            <h3>{key}</h3>
-            {episodes.map((episode) => (
-              <div key={episode.id}>
-                <h4>{episode.title}</h4>
-                <p>Added on: {new Date(episode.addedAt).toLocaleString()}</p>
-                <audio controls>
-                  <source src={episode.audioUrl} type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
-                <button onClick={() => removeFavorite(episode.id)}>
-                  Remove from Favorites
-                </button>
-              </div>
-            ))}
-          </div>
-        ))
+        Object.keys(groupedFavorites).map((key) => {
+          const episodes = sortFavorites(groupedFavorites[key]);
+          return (
+            <div key={key}>
+              <h3>{key}</h3>
+              {episodes.map((episode) => (
+                <div key={episode.id}>
+                  <h4>{episode.title}</h4>
+                  <p>Added on: {new Date(episode.addedAt).toLocaleString()}</p>
+                  <audio controls>
+                    <source src={episode.audioUrl} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                  <button onClick={() => removeFavorite(episode.id)}>
+                    Remove from Favorites
+                  </button>
+                </div>
+              ))}
+            </div>
+          );
+        })
       )}
     </div>
   );

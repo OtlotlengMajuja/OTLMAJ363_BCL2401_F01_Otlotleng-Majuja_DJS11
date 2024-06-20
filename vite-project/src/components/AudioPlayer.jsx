@@ -9,9 +9,19 @@ export default function AudioPlayer(episode) {
   useEffect(() => {
     const audio = audioRef.current;
     const updateTime = () => setCurrentTime(audio.currentTime);
+    const handleBeforeUnload = (e) => {
+      if (audio && !audio.paused) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
     if (audio) {
       audio.addEventListener("timeupdate", updateTime);
-      return () => audio.removeEventListener("timeupdate", updateTime);
+      window.addEventListener("beforeunload", handleBeforeUnload);
+      return () => {
+        audio.removeEventListener("timeupdate", updateTime);
+        window.removeEventListener("beforeunload", handleBeforeUnload);
+      };
     }
   }, [audioRef]);
 

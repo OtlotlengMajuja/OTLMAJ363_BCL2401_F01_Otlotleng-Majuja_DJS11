@@ -8,6 +8,9 @@ export default function PodEpisode(episode, showTitle, seasonNumber) {
   const { playEpisode } = useAudioPlayer();
 
   const isFavorite = faves.some((fav) => fav.id === episode.id);
+  const completedEpisodes =
+    JSON.parse(localStorage.getItem("completedEpisodes")) || [];
+  const isCompleted = completedEpisodes.includes(episode.id);
 
   const toggleFavorite = () => {
     if (isFavorite) {
@@ -23,7 +26,9 @@ export default function PodEpisode(episode, showTitle, seasonNumber) {
 
   return (
     <div>
-      <h4>{episode.title}</h4>
+      <h4>
+        {episode.title} {isCompleted && <span>(Completed)</span>}
+      </h4>
       <button onClick={handlePlay}>Play</button>
       <button onClick={toggleFavorite}>
         {isFavorite ? "Remove from Favorites" : "Add to Favorites"}

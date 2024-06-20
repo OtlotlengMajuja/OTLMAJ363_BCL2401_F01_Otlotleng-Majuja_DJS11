@@ -7,6 +7,7 @@ import { useState } from "react";
 export default function ShowList(shows) {
   const [sortOption, setSortOption] = useState("title_az");
   const [filterGenre, setFilterGenre] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const sortShows = (shows) => {
     if (sortOption === "title_az") {
@@ -27,8 +28,11 @@ export default function ShowList(shows) {
   };
 
   const filterShows = (shows) => {
-    if (!filterGenre) return shows;
-    return shows.filter((show) => show.genres.includes(filterGenre));
+    return shows.filter(
+      (show) =>
+        show.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (!filterGenre || show.genres.includes(filterGenre))
+    );
   };
 
   const sortedAndFilteredShows = sortShows(filterShows([...shows]));
@@ -63,6 +67,15 @@ export default function ShowList(shows) {
             </option>
           ))}
         </select>
+      </div>
+      <div>
+        <label>Search by title: </label>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search shows"
+        />
       </div>
       <ul>
         {sortedAndFilteredShows.map((show) => (

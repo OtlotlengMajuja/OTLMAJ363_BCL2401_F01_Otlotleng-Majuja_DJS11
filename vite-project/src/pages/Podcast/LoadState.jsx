@@ -1,10 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 
-const LoadState = () => (
+export default function LoadState() {
   <div className="loader">
     <p>Loading...</p>
-  </div>
-);
-
-export default LoadState;
+  </div>;
+}

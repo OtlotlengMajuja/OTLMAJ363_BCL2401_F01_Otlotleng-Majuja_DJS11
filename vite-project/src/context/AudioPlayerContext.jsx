@@ -2,12 +2,15 @@
 import React from "react";
 import { useState } from "react";
 import { createContext, useContext } from "react";
+import PropTypes from "prop-types";
 
 const AudioPlayerContext = createContext();
 
-export const useAudioPlayer = () => useContext(AudioPlayerContext);
+export function useAudioPlayer() {
+  useContext(AudioPlayerContext);
+}
 
-export function AudioPlayerProvider(children) {
+export function AudioPlayerProvider({ children }) {
   const [currentEpisode, setCurrentEpisode] = useState(null);
 
   const playEpisode = (episode) => {
@@ -20,3 +23,7 @@ export function AudioPlayerProvider(children) {
     </AudioPlayerContext.Provider>
   );
 }
+
+AudioPlayerProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
+import LoadState from "./pages/Podcast/LoadState";
 import ShowList from "./pages/Podcast/ShowList";
 import PodDetails from "./pages/Podcast/PodDetails";
 import PodSeason from "./pages/Podcast/PodSeason";
@@ -13,14 +14,20 @@ import { AudioPlayerProvider } from "./context/AudioPlayerContext";
 
 export default function App() {
   const [shows, setShows] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch("https://podcast-api.netlify.app/shows")
       .then((res) => res.json())
       .then((data) => {
         setShows(data);
+        setLoading(false);
       })
-      .catch((error) => console.error("Error fetching shows:", error));
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
   }, []);
 
   return (
@@ -29,7 +36,14 @@ export default function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/" element={<ShowList shows={shows} />} />
+            <Route
+              path="/"
+              element={
+                <LoadState loading={loading} error={error}>
+                  <ShowList shows={shows} />
+                </LoadState>
+              }
+            />
             <Route path="/show/:showId" element={<PodDetails />} />
             <Route
               path="/show/:showId/season/:seasonNumber"

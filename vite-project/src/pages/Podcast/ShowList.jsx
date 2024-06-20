@@ -3,8 +3,9 @@ import React from "react";
 import { useState } from "react";
 // import { Link } from "react-router-dom";
 // import { formatDistanceToNow } from "date-fns";
+import PropTypes from "prop-types";
 
-export default function ShowList(shows) {
+export default function ShowList({ shows }) {
   const [sortOption, setSortOption] = useState("title_az");
   const [filterGenre, setFilterGenre] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -85,3 +86,7 @@ export default function ShowList(shows) {
     </div>
   );
 }
+
+ShowList.propTypes = {
+  shows: PropTypes.node.isRequired,
+};

@@ -2,12 +2,13 @@
 import React from "react";
 import { createContext, useContext } from "react";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const FavesContext = createContext();
 
 export const useFavorites = () => useContext(FavesContext);
 
-export function FavoritesProvider(children) {
+export function FavoritesProvider({ children }) {
   const [faves, setFaves] = useState(() => {
     const storedFaves = localStorage.getItem("favorites");
     return storedFaves ? JSON.parse(storedFaves) : [];
@@ -40,3 +41,7 @@ export function FavoritesProvider(children) {
     </FavesContext.Provider>
   );
 }
+
+FavoritesProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

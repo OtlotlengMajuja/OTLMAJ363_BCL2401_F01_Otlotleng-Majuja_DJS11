@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function ShowList(shows) {
   const [sortOption, setSortOption] = useState("title_az");
+  const [filterGenre, setFilterGenre] = useState("");
 
   const sortShows = (shows) => {
     if (sortOption === "title_az") {
@@ -25,7 +26,14 @@ export default function ShowList(shows) {
     return shows;
   };
 
-  const sortedShows = sortShows([...shows]);
+  const filterShows = (shows) => {
+    if (!filterGenre) return shows;
+    return shows.filter((show) => show.genres.includes(filterGenre));
+  };
+
+  const sortedAndFilteredShows = sortShows(filterShows([...shows]));
+
+  const genres = [...new Set(shows.flatMap((show) => show.genres))];
 
   return (
     <div>
@@ -42,8 +50,22 @@ export default function ShowList(shows) {
           <option value="least_recent">Least Recently Updated</option>
         </select>
       </div>
+      <div>
+        <label>Filter by genre: </label>
+        <select
+          value={filterGenre}
+          onChange={(e) => setFilterGenre(e.target.value)}
+        >
+          <option value="">All</option>
+          {genres.map((genre) => (
+            <option key={genre} value={genre}>
+              {genre}
+            </option>
+          ))}
+        </select>
+      </div>
       <ul>
-        {sortedShows.map((show) => (
+        {sortedAndFilteredShows.map((show) => (
           <li key={show.id}>{show.title}</li>
         ))}
       </ul>

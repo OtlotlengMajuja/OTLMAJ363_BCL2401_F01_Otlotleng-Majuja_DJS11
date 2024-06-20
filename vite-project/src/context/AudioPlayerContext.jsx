@@ -7,7 +7,7 @@ const AudioPlayerContext = createContext();
 
 export const useAudioPlayer = () => useContext(AudioPlayerContext);
 
-export default function AudioPlayerProvider(children) {
+export function AudioPlayerProvider(children) {
   const [currentEpisode, setCurrentEpisode] = useState(null);
 
   const playEpisode = (episode) => {

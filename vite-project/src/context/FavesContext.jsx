@@ -7,7 +7,7 @@ const FavesContext = createContext();
 
 export const useFavorites = () => useContext(FavesContext);
 
-export default function FavoritesProvider(children) {
+export function FavoritesProvider(children) {
   const [faves, setFaves] = useState(() => {
     const storedFaves = localStorage.getItem("favorites");
     return storedFaves ? JSON.parse(storedFaves) : [];

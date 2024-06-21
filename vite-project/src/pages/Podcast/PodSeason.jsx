@@ -1,19 +1,50 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Episode from "./PodEpisode";
+import PropTypes from "prop-types";
 
-const Season = ({ season }) => {
+export default function PodSeason({ season, seasonNumber }) {
   const { showId } = useParams();
+  const [shows, setShows] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch(
+      "https://podcast-api.netlify.app/shows/id/seasons/${season.seasonNumber}"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setShows(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }, [showId, season]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div>
       <h3>Season {season.seasonNumber}</h3>
-      <Link to={`/show/${showId}`}>Back to Show</Link>
-      {season.episodes.map((episode) => (
+      <Link to={`/shows/${showId}`}>Back to Show</Link>
+      {episodes.map((episode) => (
         <Episode key={episode.episodeNumber} episode={episode} />
       ))}
     </div>
   );
-};
+}
 
-export default Season;
+PodSeason.propTypes = {
+  season: PropTypes.node.isRequired,
+  seasonNumber: PropTypes.node.isRequired,
+};

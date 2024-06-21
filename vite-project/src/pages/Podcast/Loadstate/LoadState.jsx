@@ -18,22 +18,24 @@ export default function LoadState({
     }, timeout);
 
     return timeoutReached ? (
-      <div>Loading took too long...</div>
+      <div className="LoadState timeout">Loading took too long...</div>
     ) : (
-      <div>Loading...</div>
+      <div className="LoadState loading">
+        <div className="loading-animation"> Loading...</div>
+      </div>
     );
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div className="LoadState error">Error: {error.message}</div>;
   }
 
   return children;
 }
 
 LoadState.propTypes = {
-  loading: PropTypes.node.isRequired,
-  error: PropTypes.node.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.object,
   children: PropTypes.node.isRequired,
-  timeout: PropTypes.node.isRequired,
+  timeout: PropTypes.number,
 };

@@ -1,0 +1,111 @@
+.PodDetails {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.PodDetails h2 {
+  margin-top: 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.PodDetails button {
+  background-color: #8bc34a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.PodDetails button:hover {
+  background-color: #7cb342;
+}
+
+.PodDetails button:active {
+  background-color: #689f38;
+}
+
+.Modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.Modal h2 {
+  margin-top: 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.Modal button {
+  background-color: #8bc34a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.Modal button:hover {
+  background-color: #7cb342;
+}
+
+.Modal button:active {
+  background-color: #689f38;
+}
+
+.SeasonList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px;
+}
+
+.SeasonList div {
+  margin: 20px;
+  width: 150px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.SeasonList div:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.SeasonList img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.SeasonList div div {
+  padding: 10px;
+  font-size: 16px;
+  color: #666;
+}

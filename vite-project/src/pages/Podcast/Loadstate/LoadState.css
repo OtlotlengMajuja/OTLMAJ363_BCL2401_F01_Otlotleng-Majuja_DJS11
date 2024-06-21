@@ -39,7 +39,7 @@
 .LoadState.error::before {
   content: "Error: ";
   font-weight: bold;
-  color: #red;
+  color: red;
 }
 
 .LoadState.timeout {
@@ -53,5 +53,5 @@
 .LoadState.timeout::before {
   content: "Loading took too long... ";
   font-weight: bold;
-  color: #orange;
+  color: orange;
 }

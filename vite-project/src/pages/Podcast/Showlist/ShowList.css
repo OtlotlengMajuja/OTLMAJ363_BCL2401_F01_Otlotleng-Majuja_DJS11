@@ -1,0 +1,58 @@
+.ShowList {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ShowList h2 {
+  margin-top: 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.ShowList label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #666;
+}
+
+.ShowList select,
+.ShowList input {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.ShowList select:focus,
+.ShowList input:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ShowList ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ShowList li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.ShowList li:hover {
+  background-color: #f0f0f0;
+}
+
+.ShowList li:last-child {
+  border-bottom: none;
+}

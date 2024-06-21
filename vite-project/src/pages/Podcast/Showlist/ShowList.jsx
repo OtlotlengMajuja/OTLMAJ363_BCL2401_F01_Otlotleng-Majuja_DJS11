@@ -2,7 +2,8 @@
 import React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { genreInfo } from "../../Genre";
+import { genreInfo } from "../../../Genre";
+import "../Showlist/ShowList.css";
 
 export default function ShowList({ shows }) {
   const [sortOption, setSortOption] = useState("title_az");
@@ -41,7 +42,7 @@ export default function ShowList({ shows }) {
   const genreOptions = genreInfo(genres);
 
   return (
-    <div>
+    <div className="ShowList">
       <h2>All Shows</h2>
       <div>
         <label>Sort by: </label>

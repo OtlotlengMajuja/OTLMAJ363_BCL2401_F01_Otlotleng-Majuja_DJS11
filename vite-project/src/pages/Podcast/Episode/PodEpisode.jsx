@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useEffect, useState, useParams } from "react";
-import { useFavorites } from "../../context/FavesContext";
-import { useAudioPlayer } from "../../context/AudioPlayerContext";
+import { useFavorites } from "../../../context/FavesContext";
+import { useAudioPlayer } from "../../../context/AudioPlayerContext";
 
 export default function PodEpisode(episode, showTitle, seasonNumber) {
   const { faves, addFavorite, removeFavorite } = useFavorites();

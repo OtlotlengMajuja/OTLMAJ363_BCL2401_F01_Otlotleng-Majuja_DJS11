@@ -2,7 +2,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import PodEpisode from "./PodEpisode";
+import PodEpisode from "../Episode/PodEpisode";
 import PropTypes from "prop-types";
 
 export default function PodSeason({ season }) {

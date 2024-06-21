@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Header } from ".../components/Header";
 import { ShowList } from "./ShowList";
+import "../Podcast/Podcast.css";
 
 export default function Podcast() {
   const [shows, setShows] = useState([]);
@@ -21,7 +22,7 @@ export default function Podcast() {
   }, []);
 
   return (
-    <div>
+    <div className="Podcast">
       <Header />
       <ShowList shows={shows} />
     </div>

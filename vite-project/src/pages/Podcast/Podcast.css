@@ -1,0 +1,50 @@
+.Podcast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+}
+
+.Podcast Header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.Podcast Header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.ShowList {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ShowList ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ShowList li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.ShowList li:hover {
+  background-color: #f0f0f0;
+}
+
+.ShowList li:last-child {
+  border-bottom: none;
+}

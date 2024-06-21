@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -6,17 +7,17 @@ import PropTypes from "prop-types";
 
 export default function PodSeason({ season, seasonNumber }) {
   const { showId } = useParams();
-  const [shows, setShows] = useState([]);
+  const [episodes, setEpisodes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(
-      "https://podcast-api.netlify.app/shows/id/seasons/${season.seasonNumber}"
+      "https://podcast-api.netlify.app/shows/${showId}/seasons/${season.seasonNumber}"
     )
       .then((res) => res.json())
       .then((data) => {
-        setShows(data);
+        setEpisodes(data.episode);
         setLoading(false);
       })
       .catch((error) => {

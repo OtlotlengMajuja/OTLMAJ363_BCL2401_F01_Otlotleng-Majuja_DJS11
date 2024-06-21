@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PodEpisode from "../Episode/PodEpisode";
 import PropTypes from "prop-types";
+import "../Season/PodSeason.css";
 
 export default function PodSeason({ season }) {
   const { showId } = useParams();
@@ -44,7 +45,7 @@ export default function PodSeason({ season }) {
   }
 
   return (
-    <div>
+    <div className="PodSeason">
       <h3>Season {season.seasonNumber}</h3>
       <Link to={`/shows/${showId}`}>Back to Show</Link>
       {episodes.map((episode) => (

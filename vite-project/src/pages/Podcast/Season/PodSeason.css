@@ -1,0 +1,34 @@
+.PodSeason {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.PodSeason h3 {
+  margin-top: 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.PodSeason a {
+  text-decoration: none;
+  color: #337ab7;
+}
+
+.PodSeason a:hover {
+  color: #23527c;
+}
+
+.PodEpisode {
+  margin-bottom: 20px;
+}
+
+.PodEpisode:last-child {
+  margin-bottom: 0;
+}

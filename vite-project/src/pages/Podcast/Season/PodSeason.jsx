@@ -12,29 +12,32 @@ export default function PodSeason({ season }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetch(
-      "https://podcast-api.netlify.app/shows/${showId}/seasons/${season.seasonNumber}"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setShows([
-          ...shows,
-          {
-            ...data,
-            episodes: data.episodes.map((episode) => ({
-              ...episode,
-              previewImage: `https://podcast-api.netlify.app/${episode.previewImage}`,
-            })),
-          },
-        ]);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
-  }, [showId, season]);
+  useEffect(
+    (shows) => {
+      fetch(
+        "https://podcast-api.netlify.app/shows/${showId}/seasons/${season.seasonNumber}"
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setShows([
+            ...shows,
+            {
+              ...data,
+              episodes: data.episodes.map((episode) => ({
+                ...episode,
+                previewImage: `https://podcast-api.netlify.app/${episode.previewImage}`,
+              })),
+            },
+          ]);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError(error);
+          setLoading(false);
+        });
+    },
+    [showId, season]
+  );
 
   if (loading) {
     return <div>Loading...</div>;
@@ -46,6 +49,7 @@ export default function PodSeason({ season }) {
 
   return (
     <div className="PodSeason">
+      <img src={props.image} className="seasons-img" />
       <h3>Season {season.seasonNumber}</h3>
       <Link to={`/shows/${showId}`}>Back to Show</Link>
       {shows.episodes.map((episode) => (

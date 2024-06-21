@@ -8,7 +8,7 @@ import ShowList from "./pages/Podcast/Showlist/ShowList";
 import PodDetails from "./pages/Podcast/Details/PodDetails";
 import PodSeason from "./pages/Podcast/Season/PodSeason";
 import GroupedFaves from "./components/GroupedFaves";
-import AudioPlayer from "./components/AudioPlayer";
+import AudioPlayer from "./components/Footer/AudioPlayer";
 import { FavoritesProvider } from "./context/FavesContext";
 import { AudioPlayerProvider } from "./context/AudioPlayerContext";
 

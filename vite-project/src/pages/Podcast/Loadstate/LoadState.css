@@ -1,0 +1,57 @@
+.LoadState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.LoadState.loading {
+  background-image: linear-gradient(to bottom, #f7f7f7, #e7e7e7);
+  background-size: 100% 3px;
+  background-position: 0% 100%;
+  transition: background-position 0.5s ease-out;
+}
+
+.LoadState.loading.loading-animation {
+  animation: loading 2s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.LoadState.error {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.LoadState.error::before {
+  content: "Error: ";
+  font-weight: bold;
+  color: #red;
+}
+
+.LoadState.timeout {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.LoadState.timeout::before {
+  content: "Loading took too long... ";
+  font-weight: bold;
+  color: #orange;
+}

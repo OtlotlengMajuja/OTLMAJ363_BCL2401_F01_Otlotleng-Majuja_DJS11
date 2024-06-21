@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Modal from "react-modal";
 import PodSeason from "./PodSeason";
-import LoadState from "./LoadState";
+import LoadState from "./Loadstate/LoadState";
 
 export default function PodDetails() {
   const { showId } = useParams();

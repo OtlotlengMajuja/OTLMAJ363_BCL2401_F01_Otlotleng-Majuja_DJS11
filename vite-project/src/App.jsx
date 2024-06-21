@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import LoadState from "./pages/Podcast/LoadState";
+import LoadState from "./pages/Podcast/Loadstate/LoadState";
 import ShowList from "./pages/Podcast/ShowList";
 import PodDetails from "./pages/Podcast/PodDetails";
 import PodSeason from "./pages/Podcast/PodSeason";
@@ -39,7 +39,7 @@ export default function App() {
             <Route
               path="/"
               element={
-                <LoadState loading={loading} error={error} timeout={timeout}>
+                <LoadState loading={loading} error={error}>
                   <ShowList shows={shows} />
                 </LoadState>
               }

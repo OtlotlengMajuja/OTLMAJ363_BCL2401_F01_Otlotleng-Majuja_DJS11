@@ -39,7 +39,7 @@ export default function App() {
             <Route
               path="/"
               element={
-                <LoadState loading={loading} error={error}>
+                <LoadState loading={loading} error={error} timeout={timeout}>
                   <ShowList shows={shows} />
                 </LoadState>
               }

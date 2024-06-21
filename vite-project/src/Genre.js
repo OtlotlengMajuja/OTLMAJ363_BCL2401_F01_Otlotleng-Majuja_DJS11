@@ -16,4 +16,4 @@ export function genreInfo(genreIds) {
     return genreObjects;
 }
 
-console.log(genreInfo([genres.value]))
+//console.log(genreInfo([genres]))

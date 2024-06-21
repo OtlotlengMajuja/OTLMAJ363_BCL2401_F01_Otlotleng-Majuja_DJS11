@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 export default function AudioPlayer(episode) {
   const [currentTime, setCurrentTime] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -41,6 +43,23 @@ export default function AudioPlayer(episode) {
     }
   }, [episode]);
 
+  const togglePlayPause = () => {
+    const audio = audioRef.current;
+    if (audio.paused) {
+      audio.play();
+      setIsPlaying(true);
+    } else {
+      audio.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const toggleMute = () => {
+    const audio = audioRef.current;
+    audio.muted = !audio.muted;
+    setIsMuted(audio.muted);
+  };
+
   if (!episode) return null;
 
   return (
@@ -49,8 +68,10 @@ export default function AudioPlayer(episode) {
       <audio controls ref={audioRef} autoPlay>
         <source src={episode.audioUrl} type="audio/mpeg" />
         Your browser does not support the audio element.
-        <div>Progress: {Math.floor(currentTime)} seconds</div>
       </audio>
+      <div>Progress: {Math.floor(currentTime)} seconds</div>
+      <button onClick={togglePlayPause}>{isPlaying ? "Pause" : "Play"}</button>
+      <button onClick={toggleMute}>{isMuted ? "Unmute" : "Mute"}</button>
     </div>
   );
 }

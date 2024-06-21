@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect, useState, useParams } from "react";
 import { useFavorites } from "../../../context/FavesContext";
 import { useAudioPlayer } from "../../../context/AudioPlayerContext";
+import "../Episode/PodEpisode.css";
 
 export default function PodEpisode(episode, showTitle, seasonNumber) {
   const { faves, addFavorite, removeFavorite } = useFavorites();
@@ -55,7 +56,7 @@ export default function PodEpisode(episode, showTitle, seasonNumber) {
   };
 
   return (
-    <div>
+    <div className="PodEpisode">
       <h4>
         {episode.title} {isCompleted && <span>(Completed)</span>}
       </h4>
@@ -64,6 +65,7 @@ export default function PodEpisode(episode, showTitle, seasonNumber) {
       <button onClick={handlePlay}>Play</button>
       <button onClick={toggleFavorite}>
         {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        {isFavorite && <span className="Favorite">(Favorite)</span>}
       </button>
     </div>
   );

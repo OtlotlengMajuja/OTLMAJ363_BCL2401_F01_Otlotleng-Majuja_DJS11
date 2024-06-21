@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import LoadState from "./pages/Podcast/Loadstate/LoadState";
 import ShowList from "./pages/Podcast/Showlist/ShowList";
-import PodDetails from "./pages/Podcast/PodDetails";
+import PodDetails from "./pages/Podcast/Details/PodDetails";
 import PodSeason from "./pages/Podcast/Season/PodSeason";
 import GroupedFaves from "./components/GroupedFaves";
 import AudioPlayer from "./components/AudioPlayer";

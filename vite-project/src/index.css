@@ -1,16 +1,28 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+body {
+  font-family: Open Sans, sans-serif;
+  font-size: 16px;
   line-height: 1.5;
-  font-weight: 400;
+  color: #333;
+  background-color: #f7f7f7;
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  color: #333;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+a {
+  text-decoration: none;
+  color: #337ab7;
+}
+
+a:hover {
+  color: #23527c;
 }
 
 .ReactModal__Overlay {
@@ -29,6 +41,24 @@
   background: #fff;
   border-radius: 4px;
   outline: none;
+}
+
+button {
+  border-radius: 10px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #8bc34a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #7cb342;
+}
+
+button:active {
+  background-color: #689f38;
 }
 
 /*a {

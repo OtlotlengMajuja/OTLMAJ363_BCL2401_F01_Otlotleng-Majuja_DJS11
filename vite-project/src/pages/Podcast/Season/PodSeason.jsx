@@ -48,7 +48,7 @@ export default function PodSeason({ season }) {
     <div className="PodSeason">
       <h3>Season {season.seasonNumber}</h3>
       <Link to={`/shows/${showId}`}>Back to Show</Link>
-      {episodes.map((episode) => (
+      {shows.episodes.map((episode) => (
         <PodEpisode key={episode.episodeNumber} episode={episode} />
       ))}
     </div>

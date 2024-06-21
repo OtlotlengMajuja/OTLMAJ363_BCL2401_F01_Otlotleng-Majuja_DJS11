@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { genreInfo, genresObject } from "../Genre";
+import { genreInfo, genresObject } from "../../../Genre";
+import "../Home/Home.css";
 
 export default function Home() {
   const [shows, setShows] = React.useState([]);

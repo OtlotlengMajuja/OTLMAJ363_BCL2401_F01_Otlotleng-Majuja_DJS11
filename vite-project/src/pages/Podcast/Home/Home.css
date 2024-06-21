@@ -1,32 +1,13 @@
-.PodSeason {
+.show-list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #f7f7f7;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 20px;
 }
 
-.PodSeason h3 {
-  margin-top: 0;
-  font-weight: bold;
-  color: #333;
-}
-
-.PodSeason a {
-  text-decoration: none;
-  color: #337ab7;
-}
-
-.PodSeason a:hover {
-  color: #23527c;
-}
-
-.PodEpisode {
-  margin-bottom: 20px;
+.show-tile {
+  margin: 20px;
+  width: 250px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -34,34 +15,44 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 250px;
   transition: all 0.3s ease-in-out;
 }
 
-.PodEpisode:hover {
+.show-tile:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
 }
 
-.PodEpisode img {
+.show-tile img {
   width: 100%;
   height: 150px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
 
-.PodEpisode h4 {
-  margin-top: 10px;
+.show-info {
+  padding: 20px;
+}
+
+.show-info h3 {
+  margin-top: 0;
   font-weight: bold;
   color: #333;
 }
 
-.PodEpisode p {
+.show-info p {
   font-size: 16px;
   color: #666;
 }
 
-.PodEpisode button {
+.genre_buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px;
+}
+
+.genre_buttons button {
   background-color: #8bc34a;
   color: #fff;
   border: none;
@@ -69,13 +60,22 @@
   font-size: 16px;
   cursor: pointer;
   border-radius: 10px;
-  margin-top: 20px;
+  margin: 10px;
 }
 
-.PodEpisode button:hover {
+.genre_buttons button:hover {
   background-color: #7cb342;
 }
 
-.PodEpisode button:active {
+.genre_buttons button:active {
   background-color: #689f38;
+}
+
+.genre_buttons button.selected {
+  background-color: #337ab7;
+  color: #fff;
+}
+
+.genre_buttons button.selected:hover {
+  background-color: #23527c;
 }

@@ -6,12 +6,17 @@
   background-color: #f7f7f7;
   border: 1px solid #ddd;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 20px;
+  width: 250px;
+  transition: all 0.3s ease-in-out;
+}
+
+.PodEpisode:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
 .PodEpisode h4 {
-  margin-top: 0;
+  margin-top: 10px;
   font-weight: bold;
   color: #333;
 }
@@ -22,10 +27,10 @@
 }
 
 .PodEpisode img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 150px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 10px 0;
   margin: 10px;
 }
 
@@ -36,17 +41,22 @@
 }
 
 .PodEpisode button {
-  background-color: #4caf50;
+  background-color: #8bc34a;
   color: #fff;
   padding: 10px 20px;
+  font-size: 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  margin: 10px;
+  margin: 20px;
 }
 
 .PodEpisode button:hover {
-  background-color: #3e8e41;
+  background-color: #7cb342;
+}
+
+.PodEpisode button:active {
+  background-color: #689f38;
 }
 
 .PodEpisode button:first-child {

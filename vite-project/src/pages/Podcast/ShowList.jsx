@@ -1,9 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useState } from "react";
-// import { Link } from "react-router-dom";
-// import { formatDistanceToNow } from "date-fns";
 import PropTypes from "prop-types";
+import { genreInfo } from "../../Genre";
 
 export default function ShowList({ shows }) {
   const [sortOption, setSortOption] = useState("title_az");
@@ -39,6 +38,7 @@ export default function ShowList({ shows }) {
   const sortedAndFilteredShows = sortShows(filterShows([...shows]));
 
   const genres = [...new Set(shows.flatMap((show) => show.genres))];
+  const genreOptions = genreInfo(genres);
 
   return (
     <div>
@@ -51,7 +51,7 @@ export default function ShowList({ shows }) {
         >
           <option value="title_az">Title A-Z</option>
           <option value="title_za">Title Z-A</option>
-          <option value="most_recent">Most Recently Updated</option>
+          <option value="most_recent">Recently Updated</option>
           <option value="least_recent">Least Recently Updated</option>
         </select>
       </div>
@@ -62,9 +62,9 @@ export default function ShowList({ shows }) {
           onChange={(e) => setFilterGenre(e.target.value)}
         >
           <option value="">All</option>
-          {genres.map((genre) => (
-            <option key={genre} value={genre}>
-              {genre}
+          {genreOptions.map((genre) => (
+            <option key={genre.id} value={genre.id}>
+              {genre.title}
             </option>
           ))}
         </select>
@@ -88,5 +88,12 @@ export default function ShowList({ shows }) {
 }
 
 ShowList.propTypes = {
-  shows: PropTypes.node.isRequired,
+  shows: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    })
+  ),
 };

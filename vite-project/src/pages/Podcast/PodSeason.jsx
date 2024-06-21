@@ -2,12 +2,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Episode from "./PodEpisode";
+import PodEpisode from "./PodEpisode";
 import PropTypes from "prop-types";
 
-export default function PodSeason({ season, seasonNumber }) {
+export default function PodSeason({ season }) {
   const { showId } = useParams();
-  const [episodes, setEpisodes] = useState([]);
+  const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -17,7 +17,16 @@ export default function PodSeason({ season, seasonNumber }) {
     )
       .then((res) => res.json())
       .then((data) => {
-        setEpisodes(data.episode);
+        setShows([
+          ...shows,
+          {
+            ...data,
+            episodes: data.episodes.map((episode) => ({
+              ...episode,
+              previewImage: `https://podcast-api.netlify.app/${episode.previewImage}`,
+            })),
+          },
+        ]);
         setLoading(false);
       })
       .catch((error) => {
@@ -39,7 +48,7 @@ export default function PodSeason({ season, seasonNumber }) {
       <h3>Season {season.seasonNumber}</h3>
       <Link to={`/shows/${showId}`}>Back to Show</Link>
       {episodes.map((episode) => (
-        <Episode key={episode.episodeNumber} episode={episode} />
+        <PodEpisode key={episode.episodeNumber} episode={episode} />
       ))}
     </div>
   );

@@ -12,7 +12,8 @@ export const genres = {
 
 
 export function genreInfo(genreIds) {
-    return genreIds.map((id) => genres[id]).join(", ");
+    const genreObjects = genreIds.map((id) => ({ title: genres[id] }));
+    return genreObjects;
 }
 
-console.log(Object.entries(genres))
+console.log(genreInfo([genres.value]))
